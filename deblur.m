@@ -1,22 +1,22 @@
 function res = deblur(input)
-  [U, S, V] = svd(input);
+  %kernel = [0.000002, 0.000212,	0.000922,	0.000212,	0.000002;
+  %          0.000212,	0.024745,	0.107391,	0.024745,	0.000212;
+  %          0.000922,	0.107391,	0.466066,	0.107391,	0.000922;
+  %          0.000212,	0.024745,	0.107391,	0.024745,	0.000212;
+  %          0.000002,	0.000212,	0.000922,	0.000212,	0.000002];
+  A = createA(B);
+  [U, S, V] = svd(A);
   Svect = S(:);
   Vvect = V(:);
-  [m, n] = size(U);
-  
-  for i=1:m
-      for j=1:n
-          Ut(j, i) = U(i, j);
-      endfor
-  endfor
-  
-  Utvect = Ut(:);
+  Uvect = U';
   [m, n] = size(input);
+  input1 = input(:);
+  
   N = m * n;
   ans = 0;
   
   for i=1:N
-      curSum = Utvect(i) * input;
+      curSum = Uvect(i, :) * input1';
       curSum = curSum / Svect(i);
       curSum = curSum * Vvect(i);
       ans = ans + curSum;
