@@ -17,6 +17,5 @@ for i=1:m
     res(2*i, 2*j-1) = (9*tmp(i+1, j+1) + 3*tmp(i+1, j) + 3*tmp(i+2, j+1) + tmp(i+2, j)) / 16;
     res(2*i, 2*j) = (9*tmp(i+1, j+1) + 3*tmp(i+2, j+1) + 3*tmp(i+1, j+2) + tmp(i+2, j+2)) / 16;
   endfor
-  i
 endfor
 endfunction
